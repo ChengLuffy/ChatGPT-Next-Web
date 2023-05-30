@@ -128,7 +128,7 @@ const jp: LocaleType = {
     Token: {
       Title: "APIキー",
       SubTitle: "自分のキーを使用してパスワードアクセス制限を迂回する",
-      Placeholder: "OpenAI APIキー",
+      Placeholder: "APIキー",
     },
     Usage: {
       Title: "残高照会",

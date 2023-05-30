@@ -126,7 +126,7 @@ const es: LocaleType = {
     Token: {
       Title: "Clave de API",
       SubTitle: "Utiliza tu clave para ignorar el límite de código de acceso",
-      Placeholder: "Clave de la API de OpenAI",
+      Placeholder: "Clave de la API de",
     },
     Usage: {
       Title: "Saldo de la cuenta",

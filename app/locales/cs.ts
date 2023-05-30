@@ -126,7 +126,7 @@ const cs: LocaleType = {
     Token: {
       Title: "API klíč",
       SubTitle: "Použitím klíče ignorujete omezení přístupového kódu",
-      Placeholder: "Klíč API OpenAI",
+      Placeholder: "Klíč API",
     },
     Usage: {
       Title: "Stav účtu",

@@ -126,7 +126,7 @@ const tr: LocaleType = {
     Token: {
       Title: "API Anahtarı",
       SubTitle: "Erişim kodu sınırını yoksaymak için anahtarınızı kullanın",
-      Placeholder: "OpenAI API Anahtarı",
+      Placeholder: "API Anahtarı",
     },
     Usage: {
       Title: "Hesap Bakiyesi",

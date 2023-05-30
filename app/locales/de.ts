@@ -128,7 +128,7 @@ const de: LocaleType = {
       Title: "API-Schlüssel",
       SubTitle:
         "Verwenden Sie Ihren Schlüssel, um das Zugangscode-Limit zu ignorieren",
-      Placeholder: "OpenAI API-Schlüssel",
+      Placeholder: "API-Schlüssel",
     },
     Usage: {
       Title: "Kontostand",

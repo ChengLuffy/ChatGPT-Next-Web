@@ -129,7 +129,7 @@ const fr: LocaleType = {
     Token: {
       Title: "Clé API",
       SubTitle: "Utilisez votre clé pour ignorer la limite du code d'accès",
-      Placeholder: "Clé OpenAI API",
+      Placeholder: "Clé API",
     },
     Usage: {
       Title: "Solde du compte",

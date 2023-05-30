@@ -123,7 +123,7 @@ const tw: LocaleType = {
     Token: {
       Title: "API Key",
       SubTitle: "OpenAI API 免费试用已结束，联系管理员以获得 API key",
-      Placeholder: "OpenAI API Key",
+      Placeholder: "API Key",
     },
     Usage: {
       Title: "帳戶餘額",

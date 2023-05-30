@@ -127,7 +127,7 @@ const ru: LocaleType = {
     Token: {
       Title: "API ключ",
       SubTitle: "Используйте свой ключ, чтобы игнорировать лимит доступа",
-      Placeholder: "API ключ OpenAI",
+      Placeholder: "API ключ",
     },
     Usage: {
       Title: "Баланс аккаунта",
