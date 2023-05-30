@@ -27,6 +27,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
+import { useAccessStore } from "../store";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -109,6 +110,7 @@ export function SideBar(props: { className?: string }) {
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
+  const accessStore = useAccessStore();
 
   useHotKey();
 
@@ -120,9 +122,21 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title"]}>ChatGPT Next</div>
-        <div className={styles["sidebar-sub-title"]}>
-          Build your own AI assistant.
-        </div>
+        {accessStore.isAuthorized() ? (
+          <div className={styles["sidebar-sub-title"]}>
+            Build your own AI assistant.
+          </div>
+        ) : (
+          <div>
+            <div className={styles["sidebar-sub-title"]}>
+              由于 cheng 的 OpenAI API 免费试用日期已经到期，后续使用需要付费
+            </div>
+            <div className={styles["sidebar-sub-title"]}>
+              因此网页更改为私用，如果您想继续使用并且认识 cheng，请联系他获取
+              API key
+            </div>
+          </div>
+        )}
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
         </div>
@@ -136,13 +150,13 @@ export function SideBar(props: { className?: string }) {
           onClick={() => navigate(Path.NewChat, { state: { fromHome: true } })}
           shadow
         />
-        <IconButton
+        {/* <IconButton
           icon={<PluginIcon />}
           text={shouldNarrow ? undefined : Locale.Plugin.Name}
           className={styles["sidebar-bar-button"]}
           onClick={() => showToast(Locale.WIP)}
           shadow
-        />
+        /> */}
       </div>
 
       <div

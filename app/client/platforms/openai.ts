@@ -195,7 +195,7 @@ export class ChatGPTApi implements LLMApi {
     }
 
     if (!used.ok || !subs.ok) {
-      throw new Error("Failed to query usage from openai");
+      throw new Error("Failed to query usage from remote server");
     }
 
     const response = (await used.json()) as {
