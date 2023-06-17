@@ -546,7 +546,7 @@ export function Settings() {
             )}
           </ListItem>
 
-          {!accessStore.hideUserApiKey ? (
+          {/* {!accessStore.hideUserApiKey ? (
             <ListItem
               title={Locale.Settings.Endpoint.Title}
               subTitle={Locale.Settings.Endpoint.SubTitle}
@@ -559,7 +559,7 @@ export function Settings() {
                 }
               ></input>
             </ListItem>
-          ) : null}
+          ) : null} */}
         </List>
 
         <List>
