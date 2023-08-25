@@ -127,7 +127,7 @@ export function MessageExporter() {
   ];
   const { currentStep, setCurrentStepIndex, currentStepIndex } =
     useSteps(steps);
-  const formats = ["text", "image"] as const;
+  const formats = ["text", "image", "json"] as const;
   type ExportFormat = (typeof formats)[number];
 
   const [exportConfig, setExportConfig] = useState({
@@ -157,7 +157,21 @@ export function MessageExporter() {
     session.mask.context,
     selection,
   ]);
-
+  function preview() {
+    if (exportConfig.format === "text") {
+      return (
+        <MarkdownPreviewer messages={selectedMessages} topic={session.topic} />
+      );
+    } else if (exportConfig.format === "json") {
+      return (
+        <JsonPreviewer messages={selectedMessages} topic={session.topic} />
+      );
+    } else {
+      return (
+        <ImagePreviewer messages={selectedMessages} topic={session.topic} />
+      );
+    }
+  }
   return (
     <>
       <Steps
@@ -212,16 +226,7 @@ export function MessageExporter() {
         />
       </div>
       {currentStep.value === "preview" && (
-        <div className={styles["message-exporter-body"]}>
-          {exportConfig.format === "text" ? (
-            <MarkdownPreviewer
-              messages={selectedMessages}
-              topic={session.topic}
-            />
-          ) : (
-            <ImagePreviewer messages={selectedMessages} topic={session.topic} />
-          )}
-        </div>
+        <div className={styles["message-exporter-body"]}>{preview()}</div>
       )}
     </>
   );
@@ -545,16 +550,59 @@ export function MarkdownPreviewer(props: {
   const download = () => {
     downloadAs(mdText, `${props.topic}.md`);
   };
+  return (
+    <>
+      <PreviewActions
+        copy={copy}
+        download={download}
+        showCopy={true}
+        messages={props.messages}
+      />
+      <div className="markdown-body">
+        <pre className={styles["export-content"]}>{mdText}</pre>
+      </div>
+    </>
+  );
+}
+
+// modified by BackTrackZ now it's looks better
+
+export function JsonPreviewer(props: {
+  messages: ChatMessage[];
+  topic: string;
+}) {
+  const msgs = {
+    messages: [
+      {
+        role: "system",
+        content: "You are an assistant that " + props.topic,
+      },
+      ...props.messages.map((m) => ({
+        role: m.role,
+        content: m.content,
+      })),
+    ],
+  };
+  const mdText = "```json\n" + JSON.stringify(msgs, null, 2) + "\n```";
+  const minifiedJson = JSON.stringify(msgs);
+
+  const copy = () => {
+    copyToClipboard(minifiedJson);
+  };
+  const download = () => {
+    downloadAs(JSON.stringify(msgs), `${props.topic}.json`);
+  };
 
   return (
     <>
       <PreviewActions
         copy={copy}
         download={download}
+        showCopy={false}
         messages={props.messages}
       />
-      <div className="markdown-body">
-        <pre className={styles["export-content"]}>{mdText}</pre>
+      <div className="markdown-body" onClick={copy}>
+        <Markdown content={mdText} />
       </div>
     </>
   );
