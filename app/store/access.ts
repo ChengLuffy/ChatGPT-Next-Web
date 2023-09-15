@@ -42,9 +42,7 @@ export const useAccessStore = createPersistStore(
       this.fetch();
 
       // has token or has code or disabled access control
-      return (
-        !!get().token || !!get().accessCode || !this.enabledAccessControl()
-      );
+      return !!get().token;
     },
     fetch() {
       if (fetchState > 0 || getClientConfig()?.buildMode === "export") return;
