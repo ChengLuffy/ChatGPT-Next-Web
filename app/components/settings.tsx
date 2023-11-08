@@ -900,7 +900,7 @@ export function Settings() {
 
           {!accessStore.hideUserApiKey ? (
             <>
-              <ListItem
+              {/* <ListItem
                 title={Locale.Settings.Endpoint.Title}
                 subTitle={Locale.Settings.Endpoint.SubTitle}
               >
@@ -914,10 +914,14 @@ export function Settings() {
                     )
                   }
                 ></input>
-              </ListItem>
+              </ListItem> */}
               <ListItem
                 title={Locale.Settings.Token.Title}
-                subTitle={Locale.Settings.Token.SubTitle}
+                subTitle={
+                  accessStore.isAuthorized()
+                    ? ""
+                    : Locale.Settings.Token.SubTitle
+                }
               >
                 <PasswordInput
                   value={accessStore.token}
