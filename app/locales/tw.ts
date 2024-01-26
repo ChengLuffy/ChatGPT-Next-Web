@@ -120,25 +120,17 @@ const tw: PartialLocaleType = {
       Title: "歷史訊息長度壓縮閾值",
       SubTitle: "當未壓縮的歷史訊息超過該值時，將進行壓縮",
     },
-    Token: {
-      Title: "API Key",
-      SubTitle: "OpenAI API 免费试用已结束，联系管理员以获得 API key",
-      Placeholder: "API Key",
-    },
+
     Usage: {
       Title: "帳戶餘額",
       SubTitle(used: any, total: any) {
-        return `已使用 $${used}，訂閱總額 $${total}`;
+        return `本月已使用 $${used}，訂閱總額 $${total}`;
       },
       IsChecking: "正在檢查…",
       Check: "重新檢查",
       NoAccess: "輸入 API Key 檢視餘額",
     },
-    AccessCode: {
-      Title: "授權碼",
-      SubTitle: "目前是未授權存取狀態",
-      Placeholder: "請輸入授權碼",
-    },
+
     Model: "模型 (model)",
     Temperature: {
       Title: "隨機性 (temperature)",
